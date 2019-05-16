@@ -1,21 +1,21 @@
 tech_groups:
     supply:
-        constraints.lifetime: 15
+        constraints.lifetime: 20
         costs.monetary.interest_rate: 0.1
     supply_plus:
         constraints.lifetime: 20
         costs.monetary.interest_rate: 0.1
     conversion:
-        constraints.lifetime: 15
+        constraints.lifetime: 20
         costs.monetary.interest_rate: 0.1
     conversion_plus:
-        constraints.lifetime: 15
+        constraints.lifetime: 20
         costs.monetary.interest_rate: 0.1
     transmission:
-        constraints.lifetime: 15
+        constraints.lifetime: 20
         costs.monetary.interest_rate: 0.1
     storage:
-        constraints.lifetime: 15
+        constraints.lifetime: 20
         costs.monetary.interest_rate: 0.1
 
 techs:
@@ -28,25 +28,16 @@ techs:
             name: Electrical demand
             carrier_in: electricity
         constraints:
-            resource: file=demand_electricity.csv
+            resource: file=demand_electricity_mean.csv
 
     demand_cooling:
         essentials:
             color: "#4575b4"
             parent: demand
             name: Cooling demand
-            carrier_in: coolth
+            carrier_in: cooling
         constraints:
-            resource: file=demand_cooling.csv
-
-    demand_UPS:
-        essentials:
-            color: "#701f04"
-            parent: demand
-            name: Uninterruptible power demand
-            carrier_in: electricity
-        constraints:
-            resource: file=demand_UPS.csv
+            resource: file=demand_cooling_mean.csv
 
 # Building-scale ------
     pv:
@@ -63,23 +54,23 @@ techs:
             resource: file=solar_resource.csv:pv
         costs:
             monetary:
-                purchase: 8000  # Rs http://www.eai.in/ref/ae/sol/rooftop/cost
-                energy_cap: 92000  # Rs http://www.eai.in/ref/ae/sol/rooftop/cost
+                purchase: 3.4e4  # Rs http://www.eai.in/ref/ae/sol/rooftop/cost - 30% subsidy
+                energy_cap: 3.6e4  # Rs http://www.eai.in/ref/ae/sol/rooftop/cost - 30% subsidy
 
     AC:
         essentials:
             color: "#abd9e9"
             parent: conversion
             name: Air conditioning
-            carrier_out: coolth
+            carrier_out: cooling
             carrier_in: electricity
         constraints:
-            energy_cap_max: 100
-            energy_eff: 1.6  # IIHS report
+            energy_cap_max: 2500
+            energy_eff: 3
         costs:
             monetary:
-                purchase: 8000  # SPONS
-                energy_cap: 10000  # SPONS
+                purchase: 2.3e6  # SPONS
+                energy_cap: 9510  # SPONS
 
     diesel_gen:
         essentials:
@@ -95,6 +86,30 @@ techs:
                 energy_cap: 14400  # Rs SPONS, converting GBP to INR for R410 A air cooled chiller
                 om_con: 200  # Rs/Kwh diesel consumption, based on $3/kWh assumtion at https://www.lazard.com/perspective/levelized-cost-of-energy-2017/
 
+    transformer:
+        essentials:
+            color: "#abd9e9"
+            name: step down transformer
+            parent: conversion
+            carrier_out: electricity
+            carrier_in: distrib_electricity
+        constraints:
+            energy_cap_max: .inf
+            energy_eff: 1 # no losses
+        costs:
+            monetary:
+                om_prod: 8  # Rs, 'Low tension commercial' https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf
+
+    exchanger:
+        essentials:
+            color: "#abd9e9"
+            name: cold water exchanger
+            parent: conversion
+            carrier_out: cooling
+            carrier_in: distrib_cooling
+        constraints:
+            energy_cap_max: .inf
+            energy_eff: 1 # no losses
 
 # Energy centre ------
     CCHP_supply:
@@ -111,64 +126,68 @@ techs:
             color: "#a6d96a"
             parent: conversion_plus
             name: Biomass Combined Cooling, Heat & Power
-            carrier_out: electricity
-            carrier_out_2: coolth
             carrier_in: cchp_fuel  # biomass
-            primary_carrier: electricity
+            primary_carrier_out: distrib_electricity
+            carrier_out: distrib_electricity
+            carrier_out_2: distrib_cooling
         constraints:
-            export_carrier: electricity
+            constraints.export_carrier: distrib_electricity
             energy_cap_max: 100000
             energy_eff: 0.2  # http://www.basisbioenergy.eu/fileadmin/BASIS/D3.5_Report_on_conversion_efficiency_of_biomass.pdf
-            carrier_ratios.carrier_out_2.coolth: 5  # https://www.energy.gov/sites/prod/files/2017/06/f35/CHP-Absorption%20Chiller-compliant.pdf & http://www.basisbioenergy.eu/fileadmin/BASIS/D3.5_Report_on_conversion_efficiency_of_biomass.pdf
+            carrier_ratios.carrier_out_2.cooling: 5  # https://www.energy.gov/sites/prod/files/2017/06/f35/CHP-Absorption%20Chiller-compliant.pdf & http://www.basisbioenergy.eu/fileadmin/BASIS/D3.5_Report_on_conversion_efficiency_of_biomass.pdf
         costs:
             monetary:
-                export: -8  # Rs, to cancel out the purchase of electricity elsewhere
+                export: -3.40  # Similar to the possible PV export https://mnre.gov.in/file-manager/akshay-urja/may-june-2014/EN/18-22.pdf
                 energy_cap: 56040  # https://www.energy.gov/sites/prod/files/2017/06/f35/CHP-Absorption%20Chiller-compliant.pdf & biomass_costs.pdf
                 om_prod: 7  # https://www.energy.gov/sites/prod/files/2017/06/f35/CHP-Absorption%20Chiller-compliant.pdf + biomass_costs.pdf
                 om_con: 2222  # 10,000 Rs/kg, 4.5kWh/kg
+                purchase: 4e6 # 100m2 for fuel storage
 
     CCHP_diesel:
         essentials:
             color: "#1d1335"
             parent: conversion_plus
             name: Diesel Combined Cooling, Heat & Power
-            carrier_out: electricity
-            carrier_out_2: coolth
+            carrier_out: distrib_electricity
+            carrier_out_2: distrib_cooling
             carrier_in: cchp_fuel  # diesel
-            primary_carrier: electricity
+            primary_carrier_out: distrib_electricity
         constraints:
-            export_carrier: electricity
+            export_carrier: distrib_electricity
             energy_cap_max: 100000
             energy_eff: 0.45
-            carrier_ratios.carrier_out_2.coolth: 0.4  # http://www.decentralized-energy.com/articles/print/volume-9/issue-3/features/heat-power-and-cooling-for-indiarsquos-commercial-developments.html
+            carrier_ratios.carrier_out_2.cooling: 0.4  # http://www.decentralized-energy.com/articles/print/volume-9/issue-3/features/heat-power-and-cooling-for-indiarsquos-commercial-developments.html
         costs:
             monetary:
-                export: -8  # Rs, to cancel out the purchase of electricity elsewhere
+                export: -3.40  # Similar to the possible PV export https://mnre.gov.in/file-manager/akshay-urja/may-june-2014/EN/18-22.pdf
                 energy_cap: 22200  # https://www.energy.gov/sites/prod/files/2017/06/f35/CHP-Absorption%20Chiller-compliant.pdf & SPONS, converting GBP to INR
                 om_prod: 7  # https://www.energy.gov/sites/prod/files/2017/06/f35/CHP-Absorption%20Chiller-compliant.pdf + biomass_costs.pdf
                 om_con: 200  # IIHS report
+                purchase: 4e5 # 10m2 for fuel storage
 
     EC:
         essentials:
             color: "#74add1"
             name: Electric Chiller
-            parent: conversion
-            carrier_out: coolth
-            carrier_in: electricity
+            parent: conversion_plus
+            primary_carrier_in: electricity
+            carrier_out: distrib_cooling
+            carrier_in: [electricity, distrib_electricity]
         constraints:
             energy_eff: 5
             energy_cap_max: 100000
         costs:
             monetary:
                 energy_cap: 10200  # SPONS, converting GBP to INR
+                om_con: 8.25  # Rs 'high tension': https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf
 
     cold_store:
         essentials:
             color: "#80cdc1"
             parent: storage
             name: Cold water storage
-            carrier_out: coolth
-            carrier_in: coolth
+            carrier_out: cooling
+            carrier_in: cooling
         constraints:
             charge_rate: 0.5
             storage_cap_max: 100000
@@ -176,14 +195,13 @@ techs:
             monetary:
                 storage_cap: 3000  # SPONS, converting GBP to INR
 
-
 # Link techs ------
     thermal_pipes:
         essentials:
             color: "#062d6d"
             parent: transmission
             name: thermal energy pipeline
-            carrier: coolth
+            carrier: distrib_cooling
         constraints:
             energy_cap_max: 10000
             energy_eff: 1  # heat loss assumed negligible
@@ -196,13 +214,41 @@ techs:
             color: "#062d6d"
             parent: transmission
             name: Energy centre connection
-            carrier: cooling
+            carrier: distrib_cooling
         constraints:
             energy_cap_max: 10000
             energy_eff: 1  # heat loss assumed negligible
+            units_max_systemwide: 1 # There can only be one energy centre connection
         costs:
             monetary:
                 energy_cap_per_distance: 731  # Rs, http://ncrpb.nic.in/Technical_assistance_report_comp_B/Volume%20I%20Panipat%20Water%20Supply/WSA_ADB%20NCRPB_FR_Vol%20I-D%20(Panipat%20WS%20Detailed%20Esitmates).pdf
+                purchase: 5e7 # triggering purchase constraints, based on 1250m2 plot @ 41500 Rs/m2 (https://www.guidancevalue.com/newpdf-2017(Urban)/Mahadevapura.pdf)
+
+    electricity_lines:
+        essentials:
+            color: "#abdda4ff"
+            parent: transmission
+            name: Electricity lines
+            carrier: distrib_electricity
+        constraints:
+            energy_cap_max: 20000
+            energy_eff: 1  # electrical losses assumed negligible
+        costs:
+            monetary:
+                energy_cap: 1e-4  # dummy cost
+
+    electricity_EC_lines:
+        essentials:
+            color: "#abdda4ff"
+            parent: transmission
+            name: Electricity lines
+            carrier: distrib_electricity
+        constraints:
+            energy_cap_max: 20000
+            energy_eff: 1  # electrical losses assumed negligible
+        costs:
+            monetary:
+                energy_cap: 1e-4  # dummy cost
 
 # System supply -----
     supply_elec:
@@ -213,6 +259,3 @@ techs:
             carrier: electricity
         constraints:
             energy_cap_max: .inf
-        costs:
-            monetary:
-                om_prod: 8  # Rs, 'Low tension commercial' https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf

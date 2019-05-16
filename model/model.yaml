@@ -5,11 +5,15 @@ import:
 
 model:
     timeseries_data_path: 'timeseries_data'
-    name: BSO2018 Bangalore cooling network
+    name: pickering-choudhary-2019-APEN Bangalore cooling network
+    time:
+        function: apply_clustering
+        function_options:
+            clustering_func: file=clusters.csv:cluster_num
+            how: mean
 run:
     solver: gurobi
     mode: plan
     ensure_feasibility: true # Switching on unmet demand
     bigM: 1e10 # setting the scale of unmet demand, which cannot be too high, otherwise the optimisation will not converge
-    solver_options.MIPGap: 0.02
-    solver_options.Threads: 1
+    solver_options.Threads: 4

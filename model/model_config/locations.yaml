@@ -4,10 +4,11 @@ locations:
         techs:
             demand_electricity:
             demand_cooling:
-            demand_UPS:
             pv:
             AC:
-            supply_elec:
+            transformer:
+            exchanger:
+            diesel_gen:
 
     EC1,EC2,EC3,EC4: # Energy Centres
         techs:
@@ -17,7 +18,6 @@ locations:
             EC:
             cold_store:
             supply_elec:
-                costs.monetary.om_prod: 8.25 # Rs 'high tension': https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf
     N1: # transmission link
 
     A.coordinates: {lat: 12.9850618, lon: 77.7285653}
@@ -25,12 +25,12 @@ locations:
     C.coordinates: {lat: 12.9841191, lon: 77.7282475}
     D.coordinates: {lat: 12.9846078, lon: 77.7273196}
     E.coordinates: {lat: 12.9827486, lon: 77.7273477}
-    F.coordinates: {lat: 12.9811963, lon: 77.7265741}  # merged nodes: G_H_F
-    G.coordinates: {lat: 12.9801903, lon: 77.7255723}  # merged nodes: M_I_J
-    H.coordinates: {lat: 12.9802957, lon: 77.7240901}  # merged nodes: N_L_K
-    K.coordinates: {lat: 12.9817025, lon: 77.7229595}  # merged nodes: O
-    I.coordinates: {lat: 12.979141, lon: 77.722626}  # merged nodes: P
-    J.coordinates: {lat: 12.9819301, lon: 77.724525}  # merged nodes: Q
+    F.coordinates: {lat: 12.9811963, lon: 77.7265741}
+    G.coordinates: {lat: 12.9801903, lon: 77.7255723}
+    H.coordinates: {lat: 12.9802957, lon: 77.7240901}
+    K.coordinates: {lat: 12.9817025, lon: 77.7229595}
+    I.coordinates: {lat: 12.979141, lon: 77.722626}
+    J.coordinates: {lat: 12.9819301, lon: 77.724525}
     N1.coordinates: {lat: 12.9821441, lon: 77.7255786}
     EC1.coordinates: {lat: 12.9831582, lon: 77.7252567}
     EC2.coordinates: {lat: 12.9853432, lon: 77.7292371}

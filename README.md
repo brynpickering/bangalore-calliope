@@ -7,13 +7,13 @@ For more information on the model structure and general use of Calliope, see [th
 
 This commit provides the model for the publication:
 
-`B. Pickering, R. Choudhary. Mitigating risk in district-level energy investment decisions by scenario optimisation, In: Proceedings of the 4th IBPSA-England Conference BSO 2018, Emmanuel College, Cambridge, 2018`
+`B. Pickering and R. Choudhary, ‘District energy system optimisation under uncertain demand: Handling data-driven stochastic profiles’, Applied Energy, vol. 236, pp. 1138–1157, Feb. 2019. DOI: 10.1016/j.apenergy.2018.12.037`
 
 If you use this model or work derived from it in an academic publication, please cite the above publication!
 
 ## Install
 
-This paper ran on a release candidate of Calliope 0.6.0. To install, clone this repository, navigate into the cloned directory and create the 'calliope_BSO2018' conda environment:
+This paper ran on a release candidate of Calliope 0.6.3. To install, clone this repository, navigate into the cloned directory and create the 'calliope_DMUU' conda environment:
 
 ```shell
 $ conda env create -f requirements.yml
@@ -21,12 +21,17 @@ $ conda env create -f requirements.yml
 
 ## Running models
 
-The notebook 'Building and running the model' will guide you through building the model. As we use predefined clusters, this version of Calliope requires manually setting up the model with the full (mean demand) timeseries before editing the time dimension to match the typical days used in the modelling.
+The notebook 'Building and running the model' will guide you through building the model.
 
 ## Notes
 
 * Native Calliope plotting will not work in most cases, due to the existence of the 'scenario' dimension.
-* Since the release of Calliope 0.6.0 and subsequent releases (at the time of writing) up to 0.6.4, there have been improvements, including mathematical formulation inconsistencies. This model will be re-run once the scenario optimisation branch has been fully incorporated in a stable Calliope release.
+
+## Previous model versions
+
+If you're looking for the model used in a previous study, please refer to the commit(s) given in the following link(s):
+
+[`B. Pickering, R. Choudhary. Mitigating risk in district-level energy investment decisions by scenario optimisation, In: Proceedings of the 4th IBPSA-England Conference BSO 2018, Emmanuel College, Cambridge, 2018`](https://github.com/brynpickering/bangalore-calliope/tree/fab6bb7f046b335acc36dfbab32954363f5a63db)
 
 ## License
 

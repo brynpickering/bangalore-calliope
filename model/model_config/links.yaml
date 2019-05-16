@@ -1,19 +1,55 @@
 links:
-    EC2,A.techs.thermal_pipes.purchase: 1e7
-    A,B.techs.thermal_pipes:
-    A,C.techs.thermal_pipes:
-    C,D.techs.thermal_pipes:
-    C,E.techs.thermal_pipes:
-    E,F.techs.thermal_pipes:
-    N1,E.techs.thermal_pipes:
-    N1,F.techs.thermal_pipes:
-    F,G.techs.thermal_pipes:
-    EC1,N1.techs.thermal_pipes.purchase: 1e7
-    N1,J.techs.thermal_pipes:
-    J,H.techs.thermal_pipes:
-    J,K.techs.thermal_pipes:
-    EC4,G.techs.thermal_pipes.purchase: 1e7
-    G,H.techs.thermal_pipes:
-    H,I.techs.thermal_pipes:
-    K,H.techs.thermal_pipes:
-    EC3,I.techs.thermal_pipes.purchase: 1e7
+    EC2,A.techs:
+        thermal_EC_pipes.one_way: true
+        electricity_EC_pipes.one_way: true
+    A,B.techs:
+        thermal_pipes:
+        electricity_lines:
+    A,C.techs:
+        thermal_pipes:
+        electricity_lines:
+    C,D.techs:
+        thermal_pipes:
+        electricity_lines:
+    C,E.techs:
+        thermal_pipes:
+        electricity_lines:
+    E,F.techs:
+        thermal_pipes:
+        electricity_lines:
+    N1,E.techs:
+        thermal_pipes:
+        electricity_lines:
+    N1,F.techs:
+        thermal_pipes:
+        electricity_lines:
+    F,G.techs:
+        thermal_pipes:
+        electricity_lines:
+    EC1,N1.techs:
+        thermal_EC_pipes.one_way: true
+        electricity_EC_pipes.one_way: true
+    N1,J.techs:
+        thermal_pipes:
+        electricity_lines:
+    J,H.techs:
+        thermal_pipes:
+        electricity_lines:
+    J,K.techs:
+        thermal_pipes:
+        electricity_lines:
+    EC4,G.techs:
+        thermal_pEC_ipes.one_way: true
+        electricity_pEC_ipes.one_way: true
+    G,H.techs:
+        thermal_pipes:
+        electricity_lines:
+    H,I.techs:
+        thermal_pipes:
+        electricity_lines:
+    K,H.techs:
+        thermal_pipes:
+        electricity_lines:
+    EC3,I.techs:
+        thermal_EC_pipes.one_way: true
+        electricity_EC_pipes.one_way: true
