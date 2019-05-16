@@ -60,7 +60,7 @@ techs:
             force_resource: true
             resource_area_per_energy_cap: 7
             resource_area_max: .inf  # locations will provide their own limit
-            resource: file=BSO2018/solar_resource.csv:pv
+            resource: file=solar_resource.csv:pv
         costs:
             monetary:
                 purchase: 8000  # Rs http://www.eai.in/ref/ae/sol/rooftop/cost
