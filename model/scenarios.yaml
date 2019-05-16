@@ -1,0 +1,64 @@
+bso2018_0:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_4.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_4.csv
+    model.probability: 0.084
+bso2018_1:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_35.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_35.csv
+    model.probability: 0.07
+bso2018_2:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_51.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_51.csv
+    model.probability: 0.016
+bso2018_3:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_78.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_78.csv
+    model.probability: 0.042
+bso2018_4:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_144.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_144.csv
+    model.probability: 0.052
+bso2018_5:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_147.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_147.csv
+    model.probability: 0.098
+bso2018_6:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_187.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_187.csv
+    model.probability: 0.056
+bso2018_7:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_206.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_206.csv
+    model.probability: 0.098
+bso2018_8:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_218.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_218.csv
+    model.probability: 0.02
+bso2018_9:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_221.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_221.csv
+    model.probability: 0.05
+bso2018_10:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_275.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_275.csv
+    model.probability: 0.062
+bso2018_11:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_320.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_320.csv
+    model.probability: 0.078
+bso2018_12:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_391.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_391.csv
+    model.probability: 0.07
+bso2018_13:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_423.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_423.csv
+    model.probability: 0.062
+bso2018_14:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_430.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_430.csv
+    model.probability: 0.096
+bso2018_15:
+    techs.demand_electricity.constraints.resource: file=BSO2018/scenarios/demand_electricity_491.csv
+    techs.demand_cooling.constraints.resource: file=BSO2018/scenarios/demand_cooling_491.csv
+    model.probability: 0.046
