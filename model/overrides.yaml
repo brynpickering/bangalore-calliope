@@ -1,0 +1,33 @@
+month_clustering:
+    # Add clustering
+    model.time:
+            function: apply_clustering
+            function_options:
+                clustering_func: file=clusters.csv:cluster_num
+                how: mean
+
+kmean_clustering:
+    # Add clustering
+    model.random_seed: 23
+    model.time:
+        masks:
+            - {function: extreme_diff, options: {tech0: pv, tech1: demand_electricity, how: max}}
+            - {function: extreme, options: {tech: demand_cooling, how: max}}
+            - {function: extreme, options: {tech:  demand_electricity, how: max}}
+        function: apply_clustering
+        function_options: {clustering_func: kmeans, how: mean, k: 9}
+
+carbon:
+    run.objective_options.cost_class: carbon
+
+cost_of_carbon_low:
+    run.objective: minmax_map_costs
+    run.objective_options.cost_class_1: monetary
+    run.objective_options.cost_class_2: carbon
+    run.objective_options.map_2_to_1: 0.365
+
+cost_of_carbon_high:
+    run.objective: minmax_map_costs
+    run.objective_options.cost_class_1: monetary
+    run.objective_options.cost_class_2: carbon
+    run.objective_options.map_2_to_1: 9.49

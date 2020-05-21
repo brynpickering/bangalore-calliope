@@ -6,11 +6,13 @@ locations:
             demand_cooling:
             pv:
             AC:
+            supply_elec:
             transformer:
             exchanger:
             diesel_gen:
+            battery:
 
-    EC1,EC2,EC3,EC4: # Energy Centres
+    EC1: # Energy Centres
         techs:
             CCHP_supply:
             CCHP_biomass:
@@ -18,6 +20,8 @@ locations:
             EC:
             cold_store:
             supply_elec:
+                costs.monetary.om_prod: 8.25 # Rs 'high tension': https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf
+            battery_EC:
     N1: # transmission link
 
     A.coordinates: {lat: 12.9850618, lon: 77.7285653}

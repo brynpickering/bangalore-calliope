@@ -7,7 +7,7 @@ For more information on the model structure and general use of Calliope, see [th
 
 This commit provides the model for the publication:
 
-`B. Pickering and R. Choudhary, ‘District energy system optimisation under uncertain demand: Handling data-driven stochastic profiles’, Applied Energy, vol. 236, pp. 1138–1157, Feb. 2019. DOI: 10.1016/j.apenergy.2018.12.037`
+`(Under Review) B. Pickering and R. Choudhary, ‘Out-of-Sample, Out of Mind: Quantifying Resilience in Energy Systems with Out-of-Sample Testing’, Energy, 2020`
 
 If you use this model or work derived from it in an academic publication, please cite the above publication!
 
@@ -31,6 +31,7 @@ The notebook 'Building and running the model' will guide you through building th
 
 If you're looking for the model used in a previous study, please refer to the commit(s) given in the following link(s):
 
+[`B. Pickering and R. Choudhary, ‘District energy system optimisation under uncertain demand: Handling data-driven stochastic profiles’, Applied Energy, vol. 236, pp. 1138–1157, Feb. 2019. DOI: 10.1016/j.apenergy.2018.12.037`]()
 [`B. Pickering, R. Choudhary. Mitigating risk in district-level energy investment decisions by scenario optimisation, In: Proceedings of the 4th IBPSA-England Conference BSO 2018, Emmanuel College, Cambridge, 2018`](https://github.com/brynpickering/bangalore-calliope/tree/fab6bb7f046b335acc36dfbab32954363f5a63db)
 
 ## License

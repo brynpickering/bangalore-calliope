@@ -1,7 +1,4 @@
 links:
-    EC2,A.techs:
-        thermal_EC_pipes.one_way: true
-        electricity_EC_pipes.one_way: true
     A,B.techs:
         thermal_pipes:
         electricity_lines:
@@ -27,8 +24,8 @@ links:
         thermal_pipes:
         electricity_lines:
     EC1,N1.techs:
-        thermal_EC_pipes.one_way: true
-        electricity_EC_pipes.one_way: true
+        thermal_EC_pipes.constraints.one_way: true
+        electricity_EC_lines.constraints.one_way: true
     N1,J.techs:
         thermal_pipes:
         electricity_lines:
@@ -38,9 +35,6 @@ links:
     J,K.techs:
         thermal_pipes:
         electricity_lines:
-    EC4,G.techs:
-        thermal_pEC_ipes.one_way: true
-        electricity_pEC_ipes.one_way: true
     G,H.techs:
         thermal_pipes:
         electricity_lines:
@@ -50,6 +44,3 @@ links:
     K,H.techs:
         thermal_pipes:
         electricity_lines:
-    EC3,I.techs:
-        thermal_EC_pipes.one_way: true
-        electricity_EC_pipes.one_way: true
